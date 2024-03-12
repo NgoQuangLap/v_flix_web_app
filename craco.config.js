@@ -4,7 +4,7 @@ const CracoAlias = require('craco-alias');
 
 module.exports = {
   style: {
-    postcss: {
+    postcssOptions: {
       plugins: [tailwindcss, autoprefixer],
     },
   },
