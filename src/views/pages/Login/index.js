@@ -118,7 +118,7 @@ const Login = (props) => {
     <>
       <Helmet>
         <title>
-          {isRegister ? 'Đăng ký - VMOflix' : 'Đăng nhập - VMOflix'}
+          {isRegister ? 'Đăng ký - Vflix' : 'Đăng nhập - Vflix'}
         </title>
       </Helmet>
       {!isAdmin ? (

@@ -86,7 +86,7 @@ const ForgotPassword = () => {
   return (
     <div className='forgotPassword flex justify-center items-center h-screen bg-black'>
       <Helmet>
-        <title>Khôi phục mật khẩu - VMOflix</title>
+        <title>Khôi phục mật khẩu - Vflix</title>
       </Helmet>
       <div className='login__background w-full h-full opacity-50 absolute'>
         <img

@@ -73,7 +73,7 @@ const HomePage = (props) => {
   return (
     <>
       <Helmet>
-        <title>VMOflix</title>
+        <title>Vflix</title>
       </Helmet>
       {loading ? (
         <Loading />

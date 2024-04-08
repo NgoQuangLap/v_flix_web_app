@@ -95,7 +95,7 @@ const User = () => {
   return (
     <div className='user h-screen flex justify-center items-center flex-col'>
       <Helmet>
-        <title>VMOflix - Quản lý tài khoản</title>
+        <title>Vflix - Quản lý tài khoản</title>
       </Helmet>
       {isLoading ? (
         <Loading />

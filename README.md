@@ -1,4 +1,4 @@
-# VMOflix - Trang review phim hàng đầu
+# VFlix - Trang xem phim hàng đầu
 
 ## Structure:
 

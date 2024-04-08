@@ -56,7 +56,7 @@ const App = () => {
     return (
       <>
         <Helmet>
-          <title>VMOflix</title>
+          <title>VFlix</title>
         </Helmet>
         <Navbar />
         <Switch>

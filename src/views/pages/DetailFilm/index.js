@@ -137,7 +137,7 @@ const DetailFilm = () => {
     <>
       <Helmet>
         <title>
-          {loading ? 'Đang tải phim...' : `${currentFilm.title} - VMOflix`}
+          {loading ? 'Đang tải phim...' : `${currentFilm.title} - Vflix`}
         </title>
       </Helmet>
       {loading ? (

@@ -44,7 +44,7 @@ const SearchFilms = () => {
   return (
     <div className='searchFilms mb-10rem'>
       <Helmet>
-        <title>VMOflix - Bộ lọc</title>
+        <title>Vflix - Bộ lọc</title>
       </Helmet>
       <div className='w-100 h-12rem sm:h-16rem lg:h-20rem flex items-center justify-center'>
         <h2 className='text-20 sm:text-30 lg:text-40 text-white uppercase font-bold text-center'>
