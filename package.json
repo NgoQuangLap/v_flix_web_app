@@ -58,6 +58,7 @@
   "devDependencies": {
     "@tailwindcss/postcss7-compat": "^2.1.0",
     "autoprefixer": "^9.8.8",
+    "babel-eslint": "^10.1.0",
     "craco-alias": "^2.2.0",
     "eslint-config-airbnb": "^18.1.0",
     "eslint-config-prettier": "6.11.0",
