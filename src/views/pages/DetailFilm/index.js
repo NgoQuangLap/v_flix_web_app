@@ -17,8 +17,9 @@ import ReviewFilm from 'views/components/ReviewFilm';
 import './style.scss';
 import { updateHistoryByUser } from 'apis/userApi';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
+import { userSelectors } from 'state/modules/user';
 
-const dataBreadcrum = [{url: '/', label: 'trang chủ'}];
+const dataBreadcrum = [{ url: '/', label: 'trang chủ' }];
 
 function useQuery() {
   const { search } = useLocation();
@@ -40,6 +41,9 @@ const DetailFilm = () => {
   const categories = useSelector((state) =>
     categoriesSelectors.categories(state),
   ).toJS();
+
+  const user = useSelector((state) => userSelectors.user(state));
+  const userId = user && user.get('_id');
 
   const listenScrollEvent = () => {
     setScrolling(window.scrollY !== 0);
@@ -70,14 +74,14 @@ const DetailFilm = () => {
         console.log(getEpisode)
         newBCR = [
           ...dataBreadcrum,
-          {url: location.pathname, label: data.film.title},
-          {label: `tập ${getEpisode}`}
+          { url: location.pathname, label: data.film.title },
+          { label: `tập ${getEpisode}` }
         ]
-        setEpisode(data.film.episodes[getEpisode-1]);
+        setEpisode(data.film.episodes[getEpisode - 1]);
       } else {
         newBCR = [
           ...dataBreadcrum,
-          {label: data.film.title},
+          { label: data.film.title },
         ];
         setEpisode(null);
       }
@@ -101,6 +105,18 @@ const DetailFilm = () => {
   const handleUpdateFilm = (dataUpdate) => {
     setCurrentFilm(dataUpdate);
   };
+
+  const handleRedirectToPayment = () => {
+    history.push({
+      pathname: '/payment-method',
+      state: {
+        amount: currentFilm.prices,
+        customerId: userId,
+        filmId: currentFilm._id,
+        nameFilm: currentFilm.title,
+      }
+    })
+  }
 
   const renderBreadcrumbs = (data = []) => {
     return (
@@ -153,7 +169,7 @@ const DetailFilm = () => {
             <Navbar
               addClass={`transform ${scrolling ? null : '-translate-y-full'}`}
             />
-            { (!loading && episode?.video) && (
+            {(!loading && episode?.video) && (
               <div className='group bg-black relative'>
                 <Link
                   to='/'
@@ -200,12 +216,12 @@ const DetailFilm = () => {
                           currentFilm.reviews.length === 0
                             ? 0
                             : (currentFilm.reviews.reduce(
-                                (average, review) => average + review.rating,
-                                0,
-                              ) /
-                                currentFilm.reviews.length /
-                                5) *
-                              100
+                              (average, review) => average + review.rating,
+                              0,
+                            ) /
+                              currentFilm.reviews.length /
+                              5) *
+                            100
                         }
                       />
                       {/* <div className='detailFilm__info-left-top-share '>
@@ -224,8 +240,8 @@ const DetailFilm = () => {
                       <span className='capitalize text-white'>
                         {currentFilm.actor
                           ? ` ${capitalizeFirstLetter(
-                              currentFilm.actor?.join(', '),
-                            )}`
+                            currentFilm.actor?.join(', '),
+                          )}`
                           : ''}
                       </span>
                     </div>
@@ -235,29 +251,29 @@ const DetailFilm = () => {
                         <>&nbsp;</>
                         {currentFilm.genre
                           ? categories
-                              .filter((item) => {
-                                for (
-                                  let i = 0;
-                                  i < currentFilm.genre.length;
-                                  i++
-                                ) {
-                                  if (item.genre === currentFilm.genre[i]) {
-                                    return true;
-                                  }
+                            .filter((item) => {
+                              for (
+                                let i = 0;
+                                i < currentFilm.genre.length;
+                                i++
+                              ) {
+                                if (item.genre === currentFilm.genre[i]) {
+                                  return true;
                                 }
-                                return false;
-                              })
-                              .map((item, index) => (
-                                <li className='inline-block' key={item._id}>
-                                  {index === 0 ? '' : <>,&nbsp;</>}
-                                  <Link
-                                    to={`/category?genre=${item.genre}`}
-                                    className='hover:underline'
-                                  >
-                                    {item.vn}
-                                  </Link>
-                                </li>
-                              ))
+                              }
+                              return false;
+                            })
+                            .map((item, index) => (
+                              <li className='inline-block' key={item._id}>
+                                {index === 0 ? '' : <>,&nbsp;</>}
+                                <Link
+                                  to={`/category?genre=${item.genre}`}
+                                  className='hover:underline'
+                                >
+                                  {item.vn}
+                                </Link>
+                              </li>
+                            ))
                           : null}
                       </ul>
                     </div>
@@ -267,6 +283,14 @@ const DetailFilm = () => {
                     <p className='text-16 text-white'>
                       {currentFilm.description}
                     </p>
+                  </div>
+                </div>
+                <div className='mb-16'>
+                  <div
+                    className='bg-red-primary py-3 px-5 rounded-lg text-center text-16 text-white font-bold cursor-pointer'
+                    onClick={() => handleRedirectToPayment()}
+                  >
+                    Mua phim
                   </div>
                 </div>
                 <div className='mb-16'>
@@ -288,7 +312,7 @@ const DetailFilm = () => {
                                 search: `?episode=${item.episode}`,
                               });
                               handleUpdateHistoryByUser(item._id);
-                              setEpisode({...item});
+                              setEpisode({ ...item });
                             }
                           }}
                         >
