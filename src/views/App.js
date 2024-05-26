@@ -81,7 +81,7 @@ const App = () => {
           <Route path='/reset-password/:token' component={ForgotPassword} />
           <Route path='/film/:slug' component={DetailFilm} />
           <Route path='/payment-method' component={PaymentMethod} />
-          <Route path='/payment-seccess' component={PaymentSuccess} />
+          <Route path='/payment-success' component={PaymentSuccess} />
           <Route component={HaveNavbar} />
         </Switch>
         <Footer />
