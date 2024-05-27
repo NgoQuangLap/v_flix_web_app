@@ -15,10 +15,18 @@ export const getPaymentById = async ({ id }) => {
     return response;
 }
 
-export const paymentFilm = async ({ amount, customerId, filmId, nameFilm }) => {
+export const paymentFilm = async ({ amount, customerId, filmId }) => {
     const promise = await apiClient.post(
         `${path}/create-checkout-session`,
-        { amount, customerId, filmId, nameFilm },
+        { amount, customerId, filmId },
+    );
+    return promise;
+};
+
+export const paymentBank = async ({ amount, customerId, filmId }) => {
+    const promise = await apiClient.post(
+        `${path}/payment-bank`,
+        { amount, customerId, filmId },
     );
     return promise;
 };

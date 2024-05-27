@@ -2,10 +2,13 @@
 import { paymentFilm } from 'apis/paymentApi';
 import * as React from 'react';
 import { useLocation } from 'react-router-dom';
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
+import Navbar from 'views/components/Navbar';
 
 const PaymentMethod = () => {
   const loacation = useLocation();
-  console.log(loacation, 'loca')
+  const history = useHistory();
+  const { amount, customerId, filmId, nameFilm } = loacation.state;
   const [selectedMethod, setSelectedMethod] = React.useState('stripe');
 
   const handleMethodChange = (method) => {
@@ -13,14 +16,19 @@ const PaymentMethod = () => {
   };
 
   const handleSubmit = async () => {
-    console.log(`Phương thức thanh toán đã chọn: ${selectedMethod}`);
-    const { amount, customerId, filmId, nameFilm } = loacation.state;
-    try {
-      const response = await paymentFilm({ amount, customerId, filmId, nameFilm })
-
-      window.location.href = response.data.data
-    } catch (error) {
-      console.log(error)
+    if (selectedMethod === "stripe") {
+      try {
+        const response = await paymentFilm({ amount, customerId, filmId })
+  
+        window.location.href = response.data.data
+      } catch (error) {
+        console.log(error)
+      }
+    } else {
+      history.push({
+        pathname: '/payment-bank',
+        state: { amount, customerId, filmId, nameFilm }
+      })
     }
   };
 
@@ -28,8 +36,13 @@ const PaymentMethod = () => {
     <>
       <div
         className="bg-gray-100 flex items-center justify-center h-screen flex-col"
-        style={{ height: '500px'}}
+        style={{ height: '600px'}}
       >
+        <Navbar
+          style={{ color: '#fff', width: '100%', height: 64 }}
+          onBack={() => router.back()}
+        />
+        <div>
         <svg width="375" height="224" viewBox="0 0 375 224" fill="none" xmlns="http://www.w3.org/2000/svg">
           <g filter="url(#filter0_b_908_7855)">
             <path d="M266 54.9939L257.666 57.6657L255.006 66L252.334 57.6657L244 54.9939L252.334 52.3343L255.006 44L257.666 52.3343L266 54.9939Z" fill="#FEE9D2" />
@@ -95,6 +108,7 @@ const PaymentMethod = () => {
             </filter>
           </defs>
         </svg>
+        </div>
         <div className="p-8 max-w-md w-full">
           <h1 className="text-2xl font-bold mb-6 text-center">Chọn Phương Thức Thanh Toán</h1>
 

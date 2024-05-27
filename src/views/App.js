@@ -24,6 +24,8 @@ import ForgotPassword from './pages/ForgotPassword';
 import Login from './pages/Login';
 import PaymentMethod from './pages/Admin/components/Payment/PaymentMethod';
 import PaymentSuccess from './pages/Admin/components/Payment/PaymentSuccess';
+import { paymentBank } from 'apis/paymentApi';
+import PaymentBank from './pages/Admin/components/Payment/PaymentBank';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -82,6 +84,7 @@ const App = () => {
           <Route path='/film/:slug' component={DetailFilm} />
           <Route path='/payment-method' component={PaymentMethod} />
           <Route path='/payment-success' component={PaymentSuccess} />
+          <Route path='/payment-bank' component={PaymentBank} />
           <Route component={HaveNavbar} />
         </Switch>
         <Footer />

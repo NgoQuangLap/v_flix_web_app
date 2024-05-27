@@ -1,4 +1,5 @@
 /* eslint-disable indent */
+/* eslint-disable */
 import { getAFilmAndRelated } from 'apis/filmApi';
 import React, { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet';
@@ -44,6 +45,10 @@ const DetailFilm = () => {
 
   const user = useSelector((state) => userSelectors.user(state));
   const userId = user && user.get('_id');
+
+  const listFilmBuyer = localStorage.getItem('film_buyer')
+
+  console.log(listFilmBuyer, currentFilm, 'currentFilm')
 
   const listenScrollEvent = () => {
     setScrolling(window.scrollY !== 0);
@@ -285,7 +290,9 @@ const DetailFilm = () => {
                     </p>
                   </div>
                 </div>
-                <div className='mb-16'>
+                {
+                  !listFilmBuyer.includes(currentFilm._id) &&
+                  <div className='mb-16'>
                   <div
                     className='bg-red-primary py-3 px-5 rounded-lg text-center text-16 text-white font-bold cursor-pointer'
                     onClick={() => handleRedirectToPayment()}
@@ -293,6 +300,10 @@ const DetailFilm = () => {
                     Mua phim
                   </div>
                 </div>
+                }
+                {
+                  listFilmBuyer.includes(currentFilm._id) &&
+
                 <div className='mb-16'>
                   <div className='text-20 text-white mb-2'>Danh sách tập phim</div>
                   <div className='grid grid-cols-12 gap-8 mb-6'>
@@ -322,6 +333,7 @@ const DetailFilm = () => {
                     }
                   </div>
                 </div>
+                }
                 <div className='detailFilm__info-left-bottom'>
                   <ReviewFilm
                     currentFilm={currentFilm}

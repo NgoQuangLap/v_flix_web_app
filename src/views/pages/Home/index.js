@@ -20,18 +20,18 @@ const HomePage = (props) => {
     userSelectors.isAuthenticated(state),
   );
   const user = useSelector((state) => userSelectors.user(state));
-  const userId = user && user.get('_id');
+  const userId = localStorage.getItem('user_id')
 
-  useEffect(() => {
-    (async () => {
-      try {
-        const resBuyer = await getFilmBuyer(userId);
-        console.log(resBuyer, 'rezsss')
-      } catch (error) {
-        console.log(error)
-      }
-    })();
-  })
+  const getListFilmBuyer = async () => {
+    try {
+      const resBuyer = await getFilmBuyer(userId);
+      const listIdBuyer = resBuyer?.data.map(item => item.idFilm);
+
+      localStorage.setItem('film_buyer', listIdBuyer)
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
   const getDataCate = async () => {
     try {
@@ -53,6 +53,10 @@ const HomePage = (props) => {
   useEffect(() => {
     getDataCate();
   }, []);
+
+  useEffect(() => {
+    getListFilmBuyer();
+  })
 
   useEffect(() => {
     (async function () {

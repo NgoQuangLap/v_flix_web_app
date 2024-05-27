@@ -51,7 +51,7 @@ const List = (props) => {
               currentFilm?.episodes && (
                 <ReactPlayer
                   url={currentFilm?.episodes[0]?.video}
-                  playing
+                  playing={false}
                   loop
                   muted={muted}
                   style={{

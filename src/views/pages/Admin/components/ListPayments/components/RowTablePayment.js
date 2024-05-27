@@ -35,13 +35,17 @@ const RowTablePayments = (props) => {
         {payment.paymentStatus === 'pending' ? "Chờ xử lý" : "Hoàn thành"}
       </td>
       <td>
-        <Link
-          to={`/admin/payment/${payment.paymentId}`}
-          className='flex justify-center cursor-pointer'
-          aria-label='Chỉnh sửa'
-        >
-          <FaEdit className='text-blue-facebook hover:text-blue-facebook-d text-26 transition-all duration-200' />
-        </Link>
+        { 
+          (payment.paymentMethod !== 'stripe' && payment.paymentStatus === 'pending')
+            ? <Link
+              to={`/admin/payment/${payment.paymentId}`}
+              className='flex justify-center cursor-pointer'
+              aria-label='Chỉnh sửa'
+            >
+              <FaEdit className='text-blue-facebook hover:text-blue-facebook-d text-26 transition-all duration-200' />
+           </Link>
+           : null
+        }
       </td>
     </tr>
   );
