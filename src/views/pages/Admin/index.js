@@ -15,6 +15,8 @@ import ListFilms from './components/ListFilms';
 import ListUsers from './components/ListUsers';
 import ManageAccount from './components/ManageAccount';
 import SidebarAdmin from './components/SidebarAdmin';
+import ListPayment from './components/ListPayments';
+import FormUpdatePayment from './components/ListPayments/components/FormUpdatePayment';
 
 const Admin = (props) => {
   const dispatch = useDispatch();
@@ -37,6 +39,7 @@ const Admin = (props) => {
           <Route path={`${match.url}/account`} component={ManageAccount} />
           <Route path={`${match.url}/films/add`} component={CreateEditFilm} />
           <Route path={`${match.url}/films/:slug`} component={CreateEditFilm} />
+          <Route path={`${match.url}/payment/:id`} component={FormUpdatePayment} />
         </Switch>
       </>
     );
@@ -67,6 +70,11 @@ const Admin = (props) => {
               <PrivateAdminRoute
                 path={`${match.url}/manage/films/bin`}
                 component={ListFilms}
+                exact
+              />
+              <PrivateAdminRoute
+                path={`${match.url}/manage/payment`}
+                component={ListPayment}
                 exact
               />
               <PrivateAdminRoute

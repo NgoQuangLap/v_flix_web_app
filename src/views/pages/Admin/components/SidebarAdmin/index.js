@@ -9,6 +9,7 @@ const SidebarAdmin = () => {
   const isManageFilms = pathname.indexOf('films') !== -1;
   const isManageUsers = pathname.indexOf('users') !== -1;
   const isManageGenres = pathname.indexOf('categories') !== -1;
+  const isManagePayment = pathname.indexOf('payment') !== -1;
 
   return (
     <div className='sidebarAdmin w-30rem bg-black-body relative'>
@@ -32,6 +33,28 @@ const SidebarAdmin = () => {
             />
             <span className={isManageFilms ? 'opacity-100' : 'opacity-50'}>
               Quản lý phim
+            </span>
+          </Link>
+        </li>
+        <li className='sidebarAdmin__item text-18 cursor-pointer text-white'>
+          <Link
+            to='/admin/manage/payment'
+            className={`relative group ${
+              isManagePayment ? 'bg-red-primary bg-opacity-10' : null
+            }`}
+          >
+            <div
+              className={`absolute w-0.6rem h-full bg-red-primary left-0 top-0 opacity-0 group-hover:opacity-100 ${
+                isManagePayment ? 'opacity-100' : null
+              }`}
+            />
+            <RiUserFill
+              className={`text-22 mr-10 ${
+                isManagePayment ? 'opacity-100' : 'opacity-50'
+              }`}
+            />
+            <span className={isManagePayment ? 'opacity-100' : 'opacity-50'}>
+              Quản lý thanh toán
             </span>
           </Link>
         </li>
