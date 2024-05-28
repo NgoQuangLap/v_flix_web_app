@@ -1,3 +1,4 @@
+/* eslint-disable */
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -60,8 +61,13 @@ const Admin = (props) => {
           </div>
           <SidebarAdmin />
           <div className='flex-1 pb-20 relative' style={{minHeight: 'calc(100vh - 68px)'}}>
-            <AmountAdmin flag={flag} />
+            {/* <AmountAdmin flag={flag} /> */}
             <Switch>
+              <PrivateAdminRoute
+                path={`${match.url}/manage/dashboard`}
+                component={AmountAdmin}
+                exact
+              />
               <PrivateAdminRoute
                 path={`${match.url}/manage/films`}
                 component={ListFilms}

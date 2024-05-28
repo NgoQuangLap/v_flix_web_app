@@ -16,6 +16,28 @@ const SidebarAdmin = () => {
       <ul className='sidebarAdmin__list'>
         <li className='sidebarAdmin__item text-18 cursor-pointer text-white'>
           <Link
+            to='/admin/manage/dashboard'
+            className={`relative group ${
+              isManagePayment ? 'bg-red-primary bg-opacity-10' : null
+            }`}
+          >
+            <div
+              className={`absolute w-0.6rem h-full bg-red-primary left-0 top-0 opacity-0 group-hover:opacity-100 ${
+                isManagePayment ? 'opacity-100' : null
+              }`}
+            />
+            <RiUserFill
+              className={`text-22 mr-10 ${
+                isManagePayment ? 'opacity-100' : 'opacity-50'
+              }`}
+            />
+            <span className={isManagePayment ? 'opacity-100' : 'opacity-50'}>
+              Thống kê
+            </span>
+          </Link>
+        </li>
+        <li className='sidebarAdmin__item text-18 cursor-pointer text-white'>
+          <Link
             to='/admin/manage/films'
             className={`relative group ${
               isManageFilms ? 'bg-red-primary bg-opacity-10' : null
