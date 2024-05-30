@@ -20,7 +20,7 @@ const HomePage = (props) => {
     userSelectors.isAuthenticated(state),
   );
   const user = useSelector((state) => userSelectors.user(state));
-  const userId = localStorage.getItem('user_id')
+  const userId = user && user.get('_id');
 
   const getListFilmBuyer = async () => {
     try {

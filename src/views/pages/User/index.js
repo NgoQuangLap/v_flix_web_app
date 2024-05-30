@@ -223,8 +223,6 @@ const User = () => {
           </span>
         </>
       )}
-
-      <h2>Lịch sử phim</h2>
     </div>
   );
 };

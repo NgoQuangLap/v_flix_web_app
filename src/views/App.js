@@ -26,6 +26,7 @@ import PaymentMethod from './pages/Admin/components/Payment/PaymentMethod';
 import PaymentSuccess from './pages/Admin/components/Payment/PaymentSuccess';
 import { paymentBank } from 'apis/paymentApi';
 import PaymentBank from './pages/Admin/components/Payment/PaymentBank';
+import MyFilm from './pages/MyFilm';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -85,6 +86,7 @@ const App = () => {
           <Route path='/payment-method' component={PaymentMethod} />
           <Route path='/payment-success' component={PaymentSuccess} />
           <Route path='/payment-bank' component={PaymentBank} />
+          <Route path='/my-film' component={MyFilm} />
           <Route component={HaveNavbar} />
         </Switch>
         <Footer />
