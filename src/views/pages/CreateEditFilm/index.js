@@ -61,6 +61,8 @@ const CreateEditFilm = () => {
     genre: [],
     poster: '',
     episodes: [],
+    prices: '',
+    numberAccounts: 0,
   });
   const [isUpdate, setIsUpdate] = useState(false);
   const [isAddFilm, setIsAddFilm] = useState(false);
@@ -115,6 +117,7 @@ const CreateEditFilm = () => {
   }
 
   const addFilm = async (dataUpload) => {
+    console.log(dataUpload, 'oo')
     try {
       await addFilmApi(dataUpload);
       history.push({
@@ -135,6 +138,7 @@ const CreateEditFilm = () => {
   }
 
   const updatFilm = async (dataUpload) => {
+    console.log('dataUpload')
     try {
       // const converDataUpLoad = {
       //   ...dataUpload,
@@ -165,6 +169,8 @@ const CreateEditFilm = () => {
       poster: state.poster,
       actor: state.actor.split(',').map((item) => item.trim().toLowerCase()),
       genre: state.genre,
+      numberAccounts: state.numberAccounts,
+      prices: state.prices,
       ...(isAddFilmPage && {episodes: state.episodes}),
     };
 
@@ -196,6 +202,7 @@ const CreateEditFilm = () => {
   };
 
   const handleSubmit = (e) => {
+    console.log('subbbb')
     e.preventDefault();
     if (isAddFilmPage) {
       if (
@@ -463,6 +470,39 @@ const CreateEditFilm = () => {
                   });
                 }}
                 value={state.actor}
+              />
+            </label>
+            <label htmlFor='prices' className='mb-6'>
+              <span className='text-20 text-white mb-2 block'>Giá phim</span>
+              <input
+                id='prices'
+                type='number'
+                className='createReview__form-input w-full'
+                placeholder='Giá của bộ phim'
+                onChange={(e) => {
+                  setState({
+                    ...state,
+                    prices: e.target.value,
+                  });
+                }}
+                value={state.prices}
+              />
+            </label>
+
+            <label htmlFor='numberAccounts' className='mb-6'>
+              <span className='text-20 text-white mb-2 block'>Số lượng account</span>
+              <input
+                id='numberAccounts'
+                type='number'
+                className='createReview__form-input w-full'
+                placeholder='Số lượng account của bộ phim'
+                onChange={(e) => {
+                  setState({
+                    ...state,
+                    numberAccounts: e.target.value,
+                  });
+                }}
+                value={state.numberAccounts}
               />
             </label>
 

@@ -22,6 +22,11 @@ import Admin from './pages/Admin';
 import DetailFilm from './pages/DetailFilm';
 import ForgotPassword from './pages/ForgotPassword';
 import Login from './pages/Login';
+import PaymentMethod from './pages/Admin/components/Payment/PaymentMethod';
+import PaymentSuccess from './pages/Admin/components/Payment/PaymentSuccess';
+import { paymentBank } from 'apis/paymentApi';
+import PaymentBank from './pages/Admin/components/Payment/PaymentBank';
+import MyFilm from './pages/MyFilm';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -78,6 +83,10 @@ const App = () => {
           <Route path='/forgot-password' component={ForgotPassword} />
           <Route path='/reset-password/:token' component={ForgotPassword} />
           <Route path='/film/:slug' component={DetailFilm} />
+          <Route path='/payment-method' component={PaymentMethod} />
+          <Route path='/payment-success' component={PaymentSuccess} />
+          <Route path='/payment-bank' component={PaymentBank} />
+          <Route path='/my-film' component={MyFilm} />
           <Route component={HaveNavbar} />
         </Switch>
         <Footer />

@@ -1,6 +1,6 @@
 /* eslint-disable func-names */
 /* eslint-disable react/no-array-index-key */
-import { getFilmsFilterApi, getFilmsRecentApi } from 'apis/filmApi';
+import { getFilmBuyer, getFilmsFilterApi, getFilmsRecentApi } from 'apis/filmApi';
 import React, { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet';
 import { useSelector } from 'react-redux';
@@ -19,7 +19,19 @@ const HomePage = (props) => {
   const isAuthenticated = useSelector((state) =>
     userSelectors.isAuthenticated(state),
   );
-  // const user = useSelector((state) => userSelectors.user(state));
+  const user = useSelector((state) => userSelectors.user(state));
+  const userId = user && user.get('_id');
+
+  const getListFilmBuyer = async () => {
+    try {
+      const resBuyer = await getFilmBuyer(userId);
+      const listIdBuyer = resBuyer?.data.map(item => item.idFilm);
+
+      localStorage.setItem('film_buyer', listIdBuyer)
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
   const getDataCate = async () => {
     try {
@@ -41,6 +53,10 @@ const HomePage = (props) => {
   useEffect(() => {
     getDataCate();
   }, []);
+
+  useEffect(() => {
+    getListFilmBuyer();
+  })
 
   useEffect(() => {
     (async function () {

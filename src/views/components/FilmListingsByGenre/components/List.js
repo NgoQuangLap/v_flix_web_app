@@ -31,8 +31,6 @@ const List = (props) => {
     setCurrentFilm(film);
   };
 
-  console.log(currentFilm)
-
   return (
     <ul
       className={`filmListingsByGenre__list flex flex-listFilm ${className}`}
@@ -53,7 +51,7 @@ const List = (props) => {
               currentFilm?.episodes && (
                 <ReactPlayer
                   url={currentFilm?.episodes[0]?.video}
-                  playing
+                  playing={false}
                   loop
                   muted={muted}
                   style={{

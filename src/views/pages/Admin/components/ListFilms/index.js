@@ -125,7 +125,7 @@ const ListFilms = (props) => {
   };
 
   return (
-    <div className='listFilms w-4/5 mx-auto relative opacity-80'>
+    <div className='listFilms w-5/5 mx-auto relative opacity-80'>
       <Helmet>
         <title>Admin - Quản lý phim</title>
       </Helmet>

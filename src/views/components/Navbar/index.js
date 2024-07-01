@@ -2,6 +2,7 @@
 /* eslint-disable indent */
 /* eslint-disable no-nested-ternary */
 /* eslint-disable max-len */
+/* eslint-disable */
 import PropTypes from 'prop-types';
 import React, { useEffect, useRef, useState } from 'react';
 import { FaCaretDown, FaSearch } from 'react-icons/fa';
@@ -138,6 +139,20 @@ const Navbar = (props) => {
                   </li>
                 ))}
               </ul>
+            </div>
+            <div className='navbar__left-genre relative ml-10'>
+              <h2
+                style={{
+                  marginTop: '4px',
+                  fontSize: '20px',
+                  fontWeight: 400,
+                  color: 'white',
+                  cursor: 'pointer'
+                }}
+                onClick={() => history.push({ pathname: '/my-film' })}
+              >
+                Phim của tôi
+              </h2>
             </div>
           </div>
           <div className='navbar__right flex'>

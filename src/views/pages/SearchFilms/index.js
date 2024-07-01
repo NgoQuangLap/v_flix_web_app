@@ -1,5 +1,5 @@
 /* eslint-disable indent */
-import axios from 'axios';
+import { getFilmsFilterApi } from 'apis/filmApi';
 import React, { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet';
 import { useSelector } from 'react-redux';
@@ -26,9 +26,7 @@ const SearchFilms = () => {
   useEffect(() => {
     const getFilms = async () => {
       setLoading(true);
-      const response = await axios.get(`/api/films/${`filter${search}`}`, {
-        withCredentials: true,
-      });
+      const response = await getFilmsFilterApi(search);
       setFilms(response.data);
       setLoading(false);
     };

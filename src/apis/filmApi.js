@@ -69,3 +69,8 @@ export const deleteEpisode = async (id) => {
   const res = await apiClient.delete(`/api/episodes/${id}`);
   return res;
 }
+
+export const getFilmBuyer = async (idUser) => {
+  const promise = await apiClient.get(`${path}/buyer/${idUser}`);
+  return promise;
+}
